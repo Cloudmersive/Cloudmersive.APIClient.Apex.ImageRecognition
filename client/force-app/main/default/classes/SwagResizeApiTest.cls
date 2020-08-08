@@ -3,7 +3,7 @@ private class SwagResizeApiTest {
     /**
      * Resize an image while preserving aspect ratio
      *
-     * Resize an image to a maximum width and maximum height, while preserving the image\&#39;s original aspect ratio
+     * Resize an image to a maximum width and maximum height, while preserving the image\&#39;s original aspect ratio.  Resize is EXIF-aware.
      */
     @isTest
     private static void resizePostTest() {
@@ -38,7 +38,7 @@ private class SwagResizeApiTest {
     /**
      * Resize an image
      *
-     * Resize an image to a specific width and specific height
+     * Resize an image to a specific width and specific height.  Resize is EXIF-aware.
      */
     @isTest
     private static void resizeResizeSimpleTest() {

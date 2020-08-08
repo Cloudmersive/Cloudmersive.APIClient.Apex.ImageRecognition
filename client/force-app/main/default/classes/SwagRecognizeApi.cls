@@ -186,7 +186,7 @@ public class SwagRecognizeApi {
     }
     /**
      * Detect vehicle license plates in an image
-     * Identify the position, and size, and content of vehicle license plates in an image.  License plates should be within 15-20 degrees on-axis to the camera.
+     * Identify the position, and size, and content of vehicle license plates in an image.  License plates should be within 15-20 degrees on-axis to the camera.  Supported image formats are JPG, PNG and BMP.
      * @param imageFile Image file to perform the operation on.  Common file formats such as PNG, JPEG are supported. (required)
      * @return SwagVehicleLicensePlateDetectionResu
      * @throws Swagger.ApiException if fails to make API call

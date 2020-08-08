@@ -202,7 +202,7 @@ private class SwagRecognizeApiTest {
     /**
      * Detect vehicle license plates in an image
      *
-     * Identify the position, and size, and content of vehicle license plates in an image.  License plates should be within 15-20 degrees on-axis to the camera.
+     * Identify the position, and size, and content of vehicle license plates in an image.  License plates should be within 15-20 degrees on-axis to the camera.  Supported image formats are JPG, PNG and BMP.
      */
     @isTest
     private static void recognizeDetectVehicleLicensePlatesTest() {

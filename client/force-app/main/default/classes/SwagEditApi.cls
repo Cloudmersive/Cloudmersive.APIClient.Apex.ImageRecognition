@@ -85,6 +85,48 @@ public class SwagEditApi {
         );
     }
     /**
+     * Composite two images together precisely
+     * Composites two input images together; a layered image onto a base image. Position is based on distance in pixels from each side.  The first image you input is the base image.  The second image (the layered image) will be composited on top of this base image.  Supports PNG transparency.  To control padding you can include transparent pixels at the border(s) of your layered images as appropriate.  Providing multiple parameters in a single axis (for example top and bottom) is not recommended, since only one of the parameters will be used per axis.
+     * @param baseImage Image file to perform the operation on.  Common file formats such as PNG, JPEG are supported. (required)
+     * @param layeredImage Image to layer on top of the base image. (required)
+     * @param top Optional; Desired distance in pixels from the top of the base image to the top of the layered image. (optional)
+     * @param bottom Optional; Desired distance in pixels from the bottom of the base image to the bottom of the layered image. (optional)
+     * @param left Optional; Desired distance in pixels from the left side of the base image to the left side of the layered image. (optional)
+     * @param right Optional; Desired distance in pixels from the right side of the base image to the right side of the layered image. (optional)
+     * @param width Optional; Desired width of the layered image in pixels. Leave height empty or 0 to automatically scale the image proportionally. (optional)
+     * @param height Optional; Desired height of the layered image in pixels. Leave width empty or 0 to automatically scale the image proportionally. (optional)
+     * @return Blob
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public Blob editCompositePrecise(Map<String, Object> params) {
+        client.assertNotNull(params.get('baseImage'), 'baseImage');
+        client.assertNotNull(params.get('layeredImage'), 'layeredImage');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        // cast form params to verify their expected type
+        form.addAll(client.makeParam('baseImage', (Blob) params.get('baseImage')));
+        form.addAll(client.makeParam('layeredImage', (Blob) params.get('layeredImage')));
+
+        return (Blob) client.invoke(
+            'POST', '/image/edit/composite/precise', '',
+            query, form,
+            new Map<String, Object>(),
+            new Map<String, Object>{
+                'top' => (Integer) params.get('top'),
+                'bottom' => (Integer) params.get('bottom'),
+                'left' => (Integer) params.get('left'),
+                'right' => (Integer) params.get('right'),
+                'width' => (Integer) params.get('width'),
+                'height' => (Integer) params.get('height')
+            },
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/x-www-form-urlencoded' },
+            new List<String> { 'Apikey' },
+            Blob.class
+        );
+    }
+    /**
      * Adaptively adjust the contrast of the image to be more appealing and easy to see
      * Uses Gamma to adjust the contrast adaptively the way the human eye sees the world.  Results significantly improve the viewability and visual appeal of the image.
      * @param gamma Gamma value to adjust the contrast in the image.  Recommended value is 2.0.  Values between 0.0 and 1.0 will reduce contrast, while values above 1.0 will increase contrast. (required)
@@ -106,6 +148,42 @@ public class SwagEditApi {
             query, form,
             new Map<String, Object>{
                 'gamma' => (Double) params.get('gamma')
+            },
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/x-www-form-urlencoded' },
+            new List<String> { 'Apikey' },
+            Blob.class
+        );
+    }
+    /**
+     * Crop an image to an circular area
+     * Crop an image to a target circular area
+     * @param left The left edge of the circular crop area in pixels (X). (required)
+     * @param top The top edge of the circular crop area in pixels (Y). (required)
+     * @param radius The radius of the circular crop area in pixels. (required)
+     * @param imageFile Image file to perform the operation on.  Common file formats such as PNG, JPEG are supported. (required)
+     * @return Blob
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public Blob editCropCircle(Map<String, Object> params) {
+        client.assertNotNull(params.get('left'), 'left');
+        client.assertNotNull(params.get('top'), 'top');
+        client.assertNotNull(params.get('radius'), 'radius');
+        client.assertNotNull(params.get('imageFile'), 'imageFile');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        // cast form params to verify their expected type
+        form.addAll(client.makeParam('imageFile', (Blob) params.get('imageFile')));
+
+        return (Blob) client.invoke(
+            'POST', '/image/edit/crop/circle/{left}/{top}/{radius}', '',
+            query, form,
+            new Map<String, Object>{
+                'left' => (Integer) params.get('left'),
+                'top' => (Integer) params.get('top'),
+                'radius' => (Integer) params.get('radius')
             },
             new Map<String, Object>(),
             new List<String>{ 'application/json' },

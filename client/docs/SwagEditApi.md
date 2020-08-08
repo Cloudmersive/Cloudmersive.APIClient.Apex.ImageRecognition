@@ -6,7 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**editAutoOrient**](SwagEditApi.md#editAutoOrient) | **POST** /image/edit/auto-orient/remove-exif | Normalizes image rotation and removes EXIF rotation data
 [**editCompositeBasic**](SwagEditApi.md#editCompositeBasic) | **POST** /image/edit/composite/{location} | Composite two images together
+[**editCompositePrecise**](SwagEditApi.md#editCompositePrecise) | **POST** /image/edit/composite/precise | Composite two images together precisely
 [**editContrastAdaptive**](SwagEditApi.md#editContrastAdaptive) | **POST** /image/edit/contrast/{gamma}/adaptive | Adaptively adjust the contrast of the image to be more appealing and easy to see
+[**editCropCircle**](SwagEditApi.md#editCropCircle) | **POST** /image/edit/crop/circle/{left}/{top}/{radius} | Crop an image to an circular area
 [**editCropRectangle**](SwagEditApi.md#editCropRectangle) | **POST** /image/edit/crop/rectangle/{left}/{top}/{width}/{height} | Crop an image to a rectangular area
 [**editDrawPolygon**](SwagEditApi.md#editDrawPolygon) | **POST** /image/edit/draw/polygon | Draw a polygon onto an image
 [**editDrawRectangle**](SwagEditApi.md#editDrawRectangle) | **POST** /image/edit/draw/rectangle | Draw a rectangle onto an image
@@ -120,6 +122,69 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
+<a name="editCompositePrecise"></a>
+# **editCompositePrecise**
+> Blob editCompositePrecise(baseImage, layeredImage, top, bottom, left, right, width, height)
+
+Composite two images together precisely
+
+Composites two input images together; a layered image onto a base image. Position is based on distance in pixels from each side.  The first image you input is the base image.  The second image (the layered image) will be composited on top of this base image.  Supports PNG transparency.  To control padding you can include transparent pixels at the border(s) of your layered images as appropriate.  Providing multiple parameters in a single axis (for example top and bottom) is not recommended, since only one of the parameters will be used per axis.
+
+### Example
+```java
+SwagEditApi api = new SwagEditApi();
+SwagClient client = api.getClient();
+
+// Configure API key authorization: Apikey
+ApiKeyAuth Apikey = (ApiKeyAuth) client.getAuthentication('Apikey');
+Apikey.setApiKey('YOUR API KEY');
+
+Map<String, Object> params = new Map<String, Object>{
+    'baseImage' => Blob.valueOf('Sample text file\nContents'),
+    'layeredImage' => Blob.valueOf('Sample text file\nContents'),
+    'top' => 56,
+    'bottom' => 56,
+    'left' => 56,
+    'right' => 56,
+    'width' => 56,
+    'height' => 56
+};
+
+try {
+    // cross your fingers
+    Blob result = api.editCompositePrecise(params);
+    System.debug(result);
+} catch (Swagger.ApiException e) {
+    // ...handle your exceptions
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **baseImage** | **Blob**| Image file to perform the operation on.  Common file formats such as PNG, JPEG are supported. |
+ **layeredImage** | **Blob**| Image to layer on top of the base image. |
+ **top** | **Integer**| Optional; Desired distance in pixels from the top of the base image to the top of the layered image. | [optional]
+ **bottom** | **Integer**| Optional; Desired distance in pixels from the bottom of the base image to the bottom of the layered image. | [optional]
+ **left** | **Integer**| Optional; Desired distance in pixels from the left side of the base image to the left side of the layered image. | [optional]
+ **right** | **Integer**| Optional; Desired distance in pixels from the right side of the base image to the right side of the layered image. | [optional]
+ **width** | **Integer**| Optional; Desired width of the layered image in pixels. Leave height empty or 0 to automatically scale the image proportionally. | [optional]
+ **height** | **Integer**| Optional; Desired height of the layered image in pixels. Leave width empty or 0 to automatically scale the image proportionally. | [optional]
+
+### Return type
+
+**Blob**
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
 <a name="editContrastAdaptive"></a>
 # **editContrastAdaptive**
 > Blob editContrastAdaptive(gamma, imageFile)
@@ -156,6 +221,61 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **gamma** | **Double**| Gamma value to adjust the contrast in the image.  Recommended value is 2.0.  Values between 0.0 and 1.0 will reduce contrast, while values above 1.0 will increase contrast. |
+ **imageFile** | **Blob**| Image file to perform the operation on.  Common file formats such as PNG, JPEG are supported. |
+
+### Return type
+
+**Blob**
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="editCropCircle"></a>
+# **editCropCircle**
+> Blob editCropCircle(left, top, radius, imageFile)
+
+Crop an image to an circular area
+
+Crop an image to a target circular area
+
+### Example
+```java
+SwagEditApi api = new SwagEditApi();
+SwagClient client = api.getClient();
+
+// Configure API key authorization: Apikey
+ApiKeyAuth Apikey = (ApiKeyAuth) client.getAuthentication('Apikey');
+Apikey.setApiKey('YOUR API KEY');
+
+Map<String, Object> params = new Map<String, Object>{
+    'left' => 56,
+    'top' => 56,
+    'radius' => 56,
+    'imageFile' => Blob.valueOf('Sample text file\nContents')
+};
+
+try {
+    // cross your fingers
+    Blob result = api.editCropCircle(params);
+    System.debug(result);
+} catch (Swagger.ApiException e) {
+    // ...handle your exceptions
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **left** | **Integer**| The left edge of the circular crop area in pixels (X). |
+ **top** | **Integer**| The top edge of the circular crop area in pixels (Y). |
+ **radius** | **Integer**| The radius of the circular crop area in pixels. |
  **imageFile** | **Blob**| Image file to perform the operation on.  Common file formats such as PNG, JPEG are supported. |
 
 ### Return type

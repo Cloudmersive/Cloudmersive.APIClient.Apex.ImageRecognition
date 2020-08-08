@@ -76,7 +76,9 @@ Class | Method | HTTP request | Description
 *SwagConvertApi* | [**convertToWebP**](docs/SwagConvertApi.md#convertToWebP) | **POST** /image/convert/to/webp | Convert input image to WebP format
 *SwagEditApi* | [**editAutoOrient**](docs/SwagEditApi.md#editAutoOrient) | **POST** /image/edit/auto-orient/remove-exif | Normalizes image rotation and removes EXIF rotation data
 *SwagEditApi* | [**editCompositeBasic**](docs/SwagEditApi.md#editCompositeBasic) | **POST** /image/edit/composite/{location} | Composite two images together
+*SwagEditApi* | [**editCompositePrecise**](docs/SwagEditApi.md#editCompositePrecise) | **POST** /image/edit/composite/precise | Composite two images together precisely
 *SwagEditApi* | [**editContrastAdaptive**](docs/SwagEditApi.md#editContrastAdaptive) | **POST** /image/edit/contrast/{gamma}/adaptive | Adaptively adjust the contrast of the image to be more appealing and easy to see
+*SwagEditApi* | [**editCropCircle**](docs/SwagEditApi.md#editCropCircle) | **POST** /image/edit/crop/circle/{left}/{top}/{radius} | Crop an image to an circular area
 *SwagEditApi* | [**editCropRectangle**](docs/SwagEditApi.md#editCropRectangle) | **POST** /image/edit/crop/rectangle/{left}/{top}/{width}/{height} | Crop an image to a rectangular area
 *SwagEditApi* | [**editDrawPolygon**](docs/SwagEditApi.md#editDrawPolygon) | **POST** /image/edit/draw/polygon | Draw a polygon onto an image
 *SwagEditApi* | [**editDrawRectangle**](docs/SwagEditApi.md#editDrawRectangle) | **POST** /image/edit/draw/rectangle | Draw a rectangle onto an image

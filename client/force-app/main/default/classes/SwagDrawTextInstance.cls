@@ -21,7 +21,7 @@ public class SwagDrawTextInstance implements Swagger.MappedProperties {
     public String text { get; set; }
 
     /**
-     * Font Family to use.  Leave blank to default to "Arial".
+     * Font Family to use.  Leave blank to default to "Arial".  Supported fonts including Arial, Calibri, Cambria, Candara, Consolas, Constantia, Corbel, Courier New, Courier Regular, Georgia, Impact Regular, Lucida, Modern Regular, Tahoma, Times New Roman, Verdana
      * @return fontFamilyName
      */
     public String fontFamilyName { get; set; }
