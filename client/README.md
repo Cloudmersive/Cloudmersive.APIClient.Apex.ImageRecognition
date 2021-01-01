@@ -116,12 +116,14 @@ Class | Method | HTTP request | Description
 *SwagRecognizeApi* | [**recognizeFindSymbol**](docs/SwagRecognizeApi.md#recognizeFindSymbol) | **POST** /image/recognize/find/symbol | Find the location of a symbol in an image
 *SwagResizeApi* | [**resizePost**](docs/SwagResizeApi.md#resizePost) | **POST** /image/resize/preserveAspectRatio/{maxWidth}/{maxHeight} | Resize an image while preserving aspect ratio
 *SwagResizeApi* | [**resizeResizeSimple**](docs/SwagResizeApi.md#resizeResizeSimple) | **POST** /image/resize/target/{width}/{height} | Resize an image
+*SwagTextGenerationApi* | [**textGenerationCreateHandwritingPng**](docs/SwagTextGenerationApi.md#textGenerationCreateHandwritingPng) | **POST** /image/text/create/handwriting/png | Create an image of handwriting in PNG format
 
 
 ## Documentation for Models
 
  - [SwagAgeDetectionResult](docs/SwagAgeDetectionResult.md)
  - [SwagColorResult](docs/SwagColorResult.md)
+ - [SwagCreateHandwritingRequest](docs/SwagCreateHandwritingRequest.md)
  - [SwagDetectedLicensePlate](docs/SwagDetectedLicensePlate.md)
  - [SwagDetectedObject](docs/SwagDetectedObject.md)
  - [SwagDominantColorResult](docs/SwagDominantColorResult.md)
