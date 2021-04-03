@@ -12,6 +12,9 @@ Method | HTTP request | Description
 [**recognizeDetectTextLarge**](SwagRecognizeApi.md#recognizeDetectTextLarge) | **POST** /image/recognize/detect-text/large | Detect large text in a photo
 [**recognizeDetectVehicleLicensePlates**](SwagRecognizeApi.md#recognizeDetectVehicleLicensePlates) | **POST** /image/recognize/detect-vehicle-license-plates | Detect vehicle license plates in an image
 [**recognizeFindSymbol**](SwagRecognizeApi.md#recognizeFindSymbol) | **POST** /image/recognize/find/symbol | Find the location of a symbol in an image
+[**recognizeSimilarityCompare**](SwagRecognizeApi.md#recognizeSimilarityCompare) | **POST** /image/recognize/similarity/compare | Compare two images for similarity
+[**recognizeSimilarityHash**](SwagRecognizeApi.md#recognizeSimilarityHash) | **POST** /image/recognize/similarity/hash | Generate a perceptual image hash
+[**recognizeSimilarityHashDistance**](SwagRecognizeApi.md#recognizeSimilarityHashDistance) | **POST** /image/recognize/similarity/hash/distance | Calculates the similarity between two perceptual image hashes
 
 
 <a name="recognizeDescribe"></a>
@@ -408,5 +411,158 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="recognizeSimilarityCompare"></a>
+# **recognizeSimilarityCompare**
+> Blob recognizeSimilarityCompare(baseImage, comparisonImage, recognitionMode)
+
+Compare two images for similarity
+
+Generates an image similarity score using Deep Learning between 0.0 and 1.0, values closer to 1.0 indicate greater similarity
+
+### Example
+```java
+SwagRecognizeApi api = new SwagRecognizeApi();
+SwagClient client = api.getClient();
+
+// Configure API key authorization: Apikey
+ApiKeyAuth Apikey = (ApiKeyAuth) client.getAuthentication('Apikey');
+Apikey.setApiKey('YOUR API KEY');
+
+Map<String, Object> params = new Map<String, Object>{
+    'baseImage' => Blob.valueOf('Sample text file\nContents'),
+    'comparisonImage' => Blob.valueOf('Sample text file\nContents'),
+    'recognitionMode' => 'recognitionMode_example'
+};
+
+try {
+    // cross your fingers
+    Blob result = api.recognizeSimilarityCompare(params);
+    System.debug(result);
+} catch (Swagger.ApiException e) {
+    // ...handle your exceptions
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **baseImage** | **Blob**| Image file to compare against.  Common file formats such as PNG, JPEG are supported. |
+ **comparisonImage** | **Blob**| Image to compare to the base image. |
+ **recognitionMode** | **String**| Optional, specify the recognition mode; possible values are Normal, Basic and Advanced.  Default is Normal. | [optional]
+
+### Return type
+
+**Blob**
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="recognizeSimilarityHash"></a>
+# **recognizeSimilarityHash**
+> SwagImageSimilarityHashResponse recognizeSimilarityHash(imageFile, recognitionMode)
+
+Generate a perceptual image hash
+
+Generates a hash value for the image; hash values that are closer together in terms of Hamming Distance are more similar.
+
+### Example
+```java
+SwagRecognizeApi api = new SwagRecognizeApi();
+SwagClient client = api.getClient();
+
+// Configure API key authorization: Apikey
+ApiKeyAuth Apikey = (ApiKeyAuth) client.getAuthentication('Apikey');
+Apikey.setApiKey('YOUR API KEY');
+
+Map<String, Object> params = new Map<String, Object>{
+    'imageFile' => Blob.valueOf('Sample text file\nContents'),
+    'recognitionMode' => 'recognitionMode_example'
+};
+
+try {
+    // cross your fingers
+    SwagImageSimilarityHashResponse result = api.recognizeSimilarityHash(params);
+    System.debug(result);
+} catch (Swagger.ApiException e) {
+    // ...handle your exceptions
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **imageFile** | **Blob**| Image file to perform the operation on.  Common file formats such as PNG, JPEG are supported. |
+ **recognitionMode** | **String**| Optional, specify the recognition mode; possible values are Normal, Basic and Advanced.  Default is Normal. | [optional]
+
+### Return type
+
+[**SwagImageSimilarityHashResponse**](SwagImageSimilarityHashResponse.md)
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="recognizeSimilarityHashDistance"></a>
+# **recognizeSimilarityHashDistance**
+> SwagImageSimilarityHashDistanceRespo recognizeSimilarityHashDistance(request)
+
+Calculates the similarity between two perceptual image hashes
+
+Calculates the similarity between two perceptual image hashes by computing the Hamming Distance between them.
+
+### Example
+```java
+SwagRecognizeApi api = new SwagRecognizeApi();
+SwagClient client = api.getClient();
+
+// Configure API key authorization: Apikey
+ApiKeyAuth Apikey = (ApiKeyAuth) client.getAuthentication('Apikey');
+Apikey.setApiKey('YOUR API KEY');
+
+Map<String, Object> params = new Map<String, Object>{
+    'request' => SwagImageSimilarityHashDistanceReque.getExample()
+};
+
+try {
+    // cross your fingers
+    SwagImageSimilarityHashDistanceRespo result = api.recognizeSimilarityHashDistance(params);
+    System.debug(result);
+} catch (Swagger.ApiException e) {
+    // ...handle your exceptions
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | [**SwagImageSimilarityHashDistanceReque**](SwagImageSimilarityHashDistanceReque.md)|  |
+
+### Return type
+
+[**SwagImageSimilarityHashDistanceRespo**](SwagImageSimilarityHashDistanceRespo.md)
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 

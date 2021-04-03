@@ -239,4 +239,89 @@ public class SwagRecognizeApi {
             SwagFindSymbolResult.class
         );
     }
+    /**
+     * Compare two images for similarity
+     * Generates an image similarity score using Deep Learning between 0.0 and 1.0, values closer to 1.0 indicate greater similarity
+     * @param baseImage Image file to compare against.  Common file formats such as PNG, JPEG are supported. (required)
+     * @param comparisonImage Image to compare to the base image. (required)
+     * @param recognitionMode Optional, specify the recognition mode; possible values are Normal, Basic and Advanced.  Default is Normal. (optional)
+     * @return Blob
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public Blob recognizeSimilarityCompare(Map<String, Object> params) {
+        client.assertNotNull(params.get('baseImage'), 'baseImage');
+        client.assertNotNull(params.get('comparisonImage'), 'comparisonImage');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        // cast form params to verify their expected type
+        form.addAll(client.makeParam('baseImage', (Blob) params.get('baseImage')));
+        form.addAll(client.makeParam('comparisonImage', (Blob) params.get('comparisonImage')));
+
+        return (Blob) client.invoke(
+            'POST', '/image/recognize/similarity/compare', '',
+            query, form,
+            new Map<String, Object>(),
+            new Map<String, Object>{
+                'recognitionMode' => (String) params.get('recognitionMode')
+            },
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/x-www-form-urlencoded' },
+            new List<String> { 'Apikey' },
+            Blob.class
+        );
+    }
+    /**
+     * Generate a perceptual image hash
+     * Generates a hash value for the image; hash values that are closer together in terms of Hamming Distance are more similar.
+     * @param imageFile Image file to perform the operation on.  Common file formats such as PNG, JPEG are supported. (required)
+     * @param recognitionMode Optional, specify the recognition mode; possible values are Normal, Basic and Advanced.  Default is Normal. (optional)
+     * @return SwagImageSimilarityHashResponse
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagImageSimilarityHashResponse recognizeSimilarityHash(Map<String, Object> params) {
+        client.assertNotNull(params.get('imageFile'), 'imageFile');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        // cast form params to verify their expected type
+        form.addAll(client.makeParam('imageFile', (Blob) params.get('imageFile')));
+
+        return (SwagImageSimilarityHashResponse) client.invoke(
+            'POST', '/image/recognize/similarity/hash', '',
+            query, form,
+            new Map<String, Object>(),
+            new Map<String, Object>{
+                'recognitionMode' => (String) params.get('recognitionMode')
+            },
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/x-www-form-urlencoded' },
+            new List<String> { 'Apikey' },
+            SwagImageSimilarityHashResponse.class
+        );
+    }
+    /**
+     * Calculates the similarity between two perceptual image hashes
+     * Calculates the similarity between two perceptual image hashes by computing the Hamming Distance between them.
+     * @param request  (required)
+     * @return SwagImageSimilarityHashDistanceRespo
+     * @throws Swagger.ApiException if fails to make API call
+     */
+    public SwagImageSimilarityHashDistanceRespo recognizeSimilarityHashDistance(Map<String, Object> params) {
+        client.assertNotNull(params.get('request'), 'request');
+        List<Swagger.Param> query = new List<Swagger.Param>();
+        List<Swagger.Param> form = new List<Swagger.Param>();
+
+        return (SwagImageSimilarityHashDistanceRespo) client.invoke(
+            'POST', '/image/recognize/similarity/hash/distance',
+            (SwagImageSimilarityHashDistanceReque) params.get('request'),
+            query, form,
+            new Map<String, Object>(),
+            new Map<String, Object>(),
+            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'Apikey' },
+            SwagImageSimilarityHashDistanceRespo.class
+        );
+    }
 }

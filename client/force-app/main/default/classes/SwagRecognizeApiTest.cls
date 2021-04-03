@@ -265,4 +265,106 @@ private class SwagRecognizeApiTest {
         response = (SwagFindSymbolResult) api.recognizeFindSymbol(params);
         System.assertEquals(expectedResponse, response);
     }
+
+    /**
+     * Compare two images for similarity
+     *
+     * Generates an image similarity score using Deep Learning between 0.0 and 1.0, values closer to 1.0 indicate greater similarity
+     */
+    @isTest
+    private static void recognizeSimilarityCompareTest() {
+        HttpResponse res = new HttpResponse();
+        res.setStatusCode(200);
+        res.setStatus('OK');
+        Test.setMock(HttpCalloutMock.class, new SwaggerResponseMock(res));
+
+        Map<String, Object> params = new Map<String, Object>{
+            'baseImage' => Blob.valueOf('Sample text file\nContents'),
+            'comparisonImage' => Blob.valueOf('Sample text file\nContents'),
+            'recognitionMode' => 'recognitionMode_example'
+        };
+
+        SwagClient client;
+        SwagRecognizeApi api;
+        Blob response;
+        Blob expectedResponse;
+
+        client = new SwagClient();
+        api = new SwagRecognizeApi(client);
+        ((Swagger.ApiKeyAuth) client.getAuthentication('Apikey');
+            client.setApiKey('foo-bar-api-key');
+
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody('"VGhlIHF1aWNrIGJyb3duIGZveCBqdW1wZWQgb3ZlciB0aGUgbGF6eSBkb2cu"');
+        expectedResponse = EncodingUtil.base64Decode('VGhlIHF1aWNrIGJyb3duIGZveCBqdW1wZWQgb3ZlciB0aGUgbGF6eSBkb2cu');
+        response = (Blob) api.recognizeSimilarityCompare(params);
+        System.assertEquals(expectedResponse, response);
+    }
+
+    /**
+     * Generate a perceptual image hash
+     *
+     * Generates a hash value for the image; hash values that are closer together in terms of Hamming Distance are more similar.
+     */
+    @isTest
+    private static void recognizeSimilarityHashTest() {
+        HttpResponse res = new HttpResponse();
+        res.setStatusCode(200);
+        res.setStatus('OK');
+        Test.setMock(HttpCalloutMock.class, new SwaggerResponseMock(res));
+
+        Map<String, Object> params = new Map<String, Object>{
+            'imageFile' => Blob.valueOf('Sample text file\nContents'),
+            'recognitionMode' => 'recognitionMode_example'
+        };
+
+        SwagClient client;
+        SwagRecognizeApi api;
+        SwagImageSimilarityHashResponse response;
+        SwagImageSimilarityHashResponse expectedResponse;
+
+        client = new SwagClient();
+        api = new SwagRecognizeApi(client);
+        ((Swagger.ApiKeyAuth) client.getAuthentication('Apikey');
+            client.setApiKey('foo-bar-api-key');
+
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody('{\r\n  "Successful" : true,\r\n  "ImageHash" : "ImageHash"\r\n}');
+        expectedResponse = SwagImageSimilarityHashResponse.getExample();
+        response = (SwagImageSimilarityHashResponse) api.recognizeSimilarityHash(params);
+        System.assertEquals(expectedResponse, response);
+    }
+
+    /**
+     * Calculates the similarity between two perceptual image hashes
+     *
+     * Calculates the similarity between two perceptual image hashes by computing the Hamming Distance between them.
+     */
+    @isTest
+    private static void recognizeSimilarityHashDistanceTest() {
+        HttpResponse res = new HttpResponse();
+        res.setStatusCode(200);
+        res.setStatus('OK');
+        Test.setMock(HttpCalloutMock.class, new SwaggerResponseMock(res));
+
+        Map<String, Object> params = new Map<String, Object>{
+            'request' => SwagImageSimilarityHashDistanceReque.getExample()
+        };
+
+        SwagClient client;
+        SwagRecognizeApi api;
+        SwagImageSimilarityHashDistanceRespo response;
+        SwagImageSimilarityHashDistanceRespo expectedResponse;
+
+        client = new SwagClient();
+        api = new SwagRecognizeApi(client);
+        ((Swagger.ApiKeyAuth) client.getAuthentication('Apikey');
+            client.setApiKey('foo-bar-api-key');
+
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody('{\r\n  "ImageSimilarityScore" : 0.8008281904610115,\r\n  "Successful" : true\r\n}');
+        expectedResponse = SwagImageSimilarityHashDistanceRespo.getExample();
+        response = (SwagImageSimilarityHashDistanceRespo) api.recognizeSimilarityHashDistance(params);
+        System.assertEquals(expectedResponse, response);
+    }
 }

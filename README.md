@@ -114,6 +114,9 @@ Class | Method | HTTP request | Description
 *SwagRecognizeApi* | [**recognizeDetectTextLarge**](docs/SwagRecognizeApi.md#recognizeDetectTextLarge) | **POST** /image/recognize/detect-text/large | Detect large text in a photo
 *SwagRecognizeApi* | [**recognizeDetectVehicleLicensePlates**](docs/SwagRecognizeApi.md#recognizeDetectVehicleLicensePlates) | **POST** /image/recognize/detect-vehicle-license-plates | Detect vehicle license plates in an image
 *SwagRecognizeApi* | [**recognizeFindSymbol**](docs/SwagRecognizeApi.md#recognizeFindSymbol) | **POST** /image/recognize/find/symbol | Find the location of a symbol in an image
+*SwagRecognizeApi* | [**recognizeSimilarityCompare**](docs/SwagRecognizeApi.md#recognizeSimilarityCompare) | **POST** /image/recognize/similarity/compare | Compare two images for similarity
+*SwagRecognizeApi* | [**recognizeSimilarityHash**](docs/SwagRecognizeApi.md#recognizeSimilarityHash) | **POST** /image/recognize/similarity/hash | Generate a perceptual image hash
+*SwagRecognizeApi* | [**recognizeSimilarityHashDistance**](docs/SwagRecognizeApi.md#recognizeSimilarityHashDistance) | **POST** /image/recognize/similarity/hash/distance | Calculates the similarity between two perceptual image hashes
 *SwagResizeApi* | [**resizePost**](docs/SwagResizeApi.md#resizePost) | **POST** /image/resize/preserveAspectRatio/{maxWidth}/{maxHeight} | Resize an image while preserving aspect ratio
 *SwagResizeApi* | [**resizeResizeSimple**](docs/SwagResizeApi.md#resizeResizeSimple) | **POST** /image/resize/target/{width}/{height} | Resize an image
 *SwagTextGenerationApi* | [**textGenerationCreateHandwritingPng**](docs/SwagTextGenerationApi.md#textGenerationCreateHandwritingPng) | **POST** /image/text/create/handwriting/png | Create an image of handwriting in PNG format
@@ -147,6 +150,10 @@ Class | Method | HTTP request | Description
  - [SwagImageDescriptionResponse](docs/SwagImageDescriptionResponse.md)
  - [SwagImageMetadata](docs/SwagImageMetadata.md)
  - [SwagImageMetadataExifValue](docs/SwagImageMetadataExifValue.md)
+ - [SwagImageSimilarityComparisonRespons](docs/SwagImageSimilarityComparisonRespons.md)
+ - [SwagImageSimilarityHashDistanceReque](docs/SwagImageSimilarityHashDistanceReque.md)
+ - [SwagImageSimilarityHashDistanceRespo](docs/SwagImageSimilarityHashDistanceRespo.md)
+ - [SwagImageSimilarityHashResponse](docs/SwagImageSimilarityHashResponse.md)
  - [SwagNsfwResult](docs/SwagNsfwResult.md)
  - [SwagObjectDetectionResult](docs/SwagObjectDetectionResult.md)
  - [SwagPersonWithAge](docs/SwagPersonWithAge.md)
